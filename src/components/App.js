@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import ShoppingList from "./ShoppingList";
-import itemData from "../data/items";
+import Header from "./Header";
+
+// Mock data for items
+const items = [
+  { id: 1, name: "Milk", category: "Dairy" },
+  { id: 2, name: "Carrots", category: "Produce" },
+  { id: 3, name: "Ice Cream", category: "Dessert" },
+];
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  function onDarkModeClick() {
+  function handleDarkModeClick() {
     setIsDarkMode((isDarkMode) => !isDarkMode);
   }
 
   return (
     <div className={"App " + (isDarkMode ? "dark" : "light")}>
-      <header>
-        <h2>Shopster</h2>
-        <button onClick={onDarkModeClick}>
-          {isDarkMode ? "Dark" : "Light"} Mode
-        </button>
-      </header>
-      <ShoppingList items={itemData} />
+      <Header onDarkModeClick={handleDarkModeClick} isDarkMode={isDarkMode} />
+      <ShoppingList items={items} />
     </div>
   );
 }
